@@ -5,10 +5,10 @@ collecting web performace data
 
 - usage：
   - es module:
-    import Performancemonitor from 'web-performance-hry/dist/webPerformance.min.js'
+    import Performancemonitor from 'web-performance-hry/dist/js/webPerformance.min.js'
   - common js:
-    var Performancemonitor = require ('web-performance-hry/dist/webPerformance.min.js')
+    var Performancemonitor = require ('web-performance-hry/dist/js/webPerformance.min.js')
 
-  - window.Performancemonitor = Performancemonitor;
-    Performancemonitor.setHeaders(headers)  // set header
-    Performancemonitor.init(url) // data report api url
+  - window.monitor = Performancemonitor;
+    monitor.setHeaders(headers)  // set header
+    monitor.init(url) // data report api url

@@ -1,5 +1,5 @@
 import * as Util from './utils'
-export default PerformanceMonitor = {
+let PerformanceMonitor = {
   headers: null,
   paintData: {},
   getPaint: false,
@@ -33,7 +33,7 @@ export default PerformanceMonitor = {
           })
         }
         this.paintData.timestamp = (new Date()).getTime()
-        sendData(this.paintData)
+        this.sendData(this.paintData)
       })
       try {
         observer.observe({
@@ -70,3 +70,4 @@ export default PerformanceMonitor = {
     }
   }
 }
+export default PerformanceMonitor
