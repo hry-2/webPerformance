@@ -1,6 +1,6 @@
 {
   "name": "web-performance-hry",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "collecting web performance data",
   "main": "index.js",
   "scripts": {

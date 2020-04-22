@@ -3,6 +3,7 @@ let PerformanceMonitor = {
   headers: null,
   paintData: {},
   getPaint: false,
+  getNav: false,
   url: '',
   setHeaders (headers) {
     this.headers = headers
@@ -20,20 +21,23 @@ let PerformanceMonitor = {
             this.getPaint = true
           } else if (data.entryType === 'navigation') {
             this.handleData(data)
+            this.getNav = true
           }
         })
-        if (!this.getPaint) {
-          window.performance && window.performance.getEntries().forEach(function (en) {
-            if (en.name === 'first-paint') {
-              paintData['first-paint'] = parseInt(en.startTime)
-            }
-            if (en.name === 'first-contentful-paint') {
-              paintData['first-contentful-paint'] = parseInt(en.startTime)
-            }
-          })
+        if (this.getPaint && this.getNav) {
+          if (!this.paintData['first-paint']) {
+            window.performance && window.performance.getEntries().forEach((en) => {
+              if (en.name === 'first-paint') {
+                this.paintData['first-paint'] = parseInt(en.startTime)
+              }
+              if (en.name === 'first-contentful-paint') {
+                this.paintData['first-contentful-paint'] = parseInt(en.startTime)
+              }
+            })
+          }
+          this.paintData.timestamp = (new Date()).getTime()
+          this.sendData(this.paintData)
         }
-        this.paintData.timestamp = (new Date()).getTime()
-        this.sendData(this.paintData)
       })
       try {
         observer.observe({
